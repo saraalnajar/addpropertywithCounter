@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
+import 'package:flutter_spinbox/flutter_spinbox.dart';
 
 class addProperty extends StatefulWidget {
   const addProperty({ Key key }) : super(key: key);
@@ -15,120 +16,14 @@ class _addPropertyState extends State<addProperty> {
 
   TextEditingController price = new TextEditingController();
   TextEditingController area = new TextEditingController();
-String Nr="1";//هنا تخزن قيمه الbedroom
-String NBr="1";//هنا تخزت قيمه ال bathroom
+String Nr="3";//هنا تخزن قيمه الbedroom
+String NBr="2";//هنا تخزت قيمه ال bathroom
 String Nk="1";//هنا تخزت قيمه الkitchen
 String Ns="1";//هنا تخزت قيمه ال Living room
 String Datselected="Irbid";
 String ct="For Sale";
-int selectedNR=0;
-int selectedBR=0;
-int selectedK=0;
-int selectedSR=0;
 
-List<String> lst = ['1','2','3','4','5','6'];
-  @override
-  //ال bedrooms
-    void changeindexNR(int index,String t){
-setState(() {
-  selectedNR =index;
-  Nr=t;
-});
-  }
-  Widget radioNR(String txt,int index){
-return ButtonTheme( minWidth: 70,
-         
-  child:   OutlineButton(onPressed: ()=> changeindexNR(index,txt),
-  
-  padding:  const EdgeInsets.only(top: 25,bottom: 25),
-  
-  borderSide: BorderSide(color: selectedNR == index ? Colors.brown:Colors.grey[700],
-  
-  width: selectedNR == index ? 2:1),
-  
-  child: Text(txt,style:TextStyle(color:  selectedNR == index ? Colors.brown:Colors.grey[700],fontSize:18 )),
-  
-  
-  
-  ),
-);
-  
-  }
-//bathroom
 
- void changeindexBR(int index,String t){
-setState(() {
-  selectedBR =index;
-NBr=t; //اذا بدك تستدعي القيمه 
-});
-  }
-  Widget radioBR(String txt,int index){
-return ButtonTheme( minWidth: 70,
-  child:   OutlineButton(onPressed: ()=> changeindexBR(index,txt),
-  
-  padding:  const EdgeInsets.only(top: 25,bottom: 25),
-  
-  borderSide: BorderSide(color: selectedBR == index ? Colors.brown:Colors.grey[700],
-  
-  width: selectedBR == index ? 2:1),
-  
-  child: Text(txt,style:TextStyle(color:  selectedBR == index ? Colors.brown:Colors.grey[700],fontSize:18 )),
-  
-  
-  
-  ),
-);
-  }
-//KITCHEN
-    void changeindexK(int index,String t){
-setState(() {
-  selectedK =index;
-  Nk=t;
-});
-  }
-  Widget radioK(String txt,int index){
-return ButtonTheme( minWidth: 70,
-  child:   OutlineButton(onPressed: ()=> changeindexK(index,txt),
-  
-  padding:  const EdgeInsets.only(top: 25,bottom: 25),
-  
-  borderSide: BorderSide(color: selectedK == index ? Colors.brown:Colors.grey[700],
-  
-  width: selectedK == index ? 2:1),
-  
-  child: Text(txt,style:TextStyle(color:  selectedK == index ? Colors.brown:Colors.grey[700],fontSize:18)),
-  
-  
-  
-  ),
-);
-  
-  }
-//LIVIING ROOM
-   void changeindexSR(int index,String t){
-setState(() {
-  selectedSR =index;
-  Ns=t;
-});
-  }
-  Widget radioSR(String txt,int index){
-return ButtonTheme( minWidth: 70,
-  child:   OutlineButton(onPressed: ()=> changeindexSR(index,txt),
-  
-  padding:  const EdgeInsets.only(top: 25,bottom: 25),
-  
-  borderSide: BorderSide(color: selectedSR == index ? Colors.brown:Colors.grey[700],
-  
-  width: selectedSR == index ? 2:1),
-  
-  child: Text(txt,style:TextStyle(color:  selectedSR == index ? Colors.brown:Colors.grey[700] ,fontSize:18)),
-  
-  
-  
-  ),
-);
-  
-  }
 
   Widget build(BuildContext context) {
     return Scaffold
@@ -162,7 +57,7 @@ SizedBox(
                       padding: const EdgeInsets.only(left:16.0),
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: Text("Address:",style:TextStyle(fontSize: 22))),
+                        child: Text("Title:",style:TextStyle(fontSize: 22))),
                     ),
                      
             
@@ -171,12 +66,12 @@ SizedBox(
               child: TextFormField(
                  validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter the property Address';
+                              return 'Please enter the Tilte';
                             }
                             return null;
                           },
                 decoration: InputDecoration(
-                                    hintText: 'Address',
+                                    hintText: 'Title',
                                      errorBorder: OutlineInputBorder(
 borderSide:  BorderSide(color: Colors.red,
                                       width:1, ),
@@ -212,31 +107,21 @@ borderSide:  BorderSide(color: Colors.red,
                         child: Text("Number of Bedrooms:",style:TextStyle(fontSize: 22))),
                     ),
                      
-            
-          Row(
-            children: [SizedBox(
-  width:16
-),
-radioNR(lst[0],0),
-SizedBox(
-  width:12
-),
-radioNR(lst[1],1),SizedBox(
-  width:12
-),
-radioNR(lst[2],2),SizedBox(
-  width:12
-),
-radioNR(lst[3],3),SizedBox(
-  width:12
-),
-radioNR(lst[4],4),
-
-          ],),  /* 
+        
                                   Padding(
                child: SpinBox(
+                 decoration: InputDecoration(enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:1, ),
+                                      
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:2, ),
+                                      
+                                    )),
                   min: 1,
-                  max: 20,
+                  
                   value: 3,
                 onChanged: (value) {
                         setState(() {
@@ -245,7 +130,7 @@ radioNR(lst[4],4),
                         
                         } ),
                 padding: const EdgeInsets.all(16),
-              ),*/
+              ),
               
                 Padding(
                       padding: const EdgeInsets.only(left:16.0,bottom: 12,top: 12,),
@@ -254,11 +139,21 @@ radioNR(lst[4],4),
                         child: Text("Number of Bathrooms:",style:TextStyle(fontSize: 22))),
                     ),
                      
-            
-                    /*              Padding(
+          
+                                Padding(
                 child: SpinBox(
+                    decoration: InputDecoration(enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:1, ),
+                                      
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:2, ),
+                                      
+                                    )),
                   min: 1,
-                  max: 20,
+               
                   value: 2,
                  onChanged: (value) {
                         setState(() {
@@ -267,30 +162,8 @@ radioNR(lst[4],4),
                         } 
                 ),
                 padding: const EdgeInsets.all(16),
-              ),*/
-               Row(
-            children: [SizedBox(
-  width:16
-),
-radioBR(lst[0],0),SizedBox(
-  width:12
-),
-radioBR(lst[1],1),SizedBox(
-  width:12
-),
-radioBR(lst[2],2),SizedBox(
-  width:12
-),
-radioBR(lst[3],3),SizedBox(
-  width:12
-),
-radioBR(lst[4],4),SizedBox(
-  width:12
-),
-radioBR(lst[5],5),
-
-
-          ],), 
+              ),
+          
              
               Padding(
                       padding: const EdgeInsets.only(left:16.0,bottom: 12,top: 12,),
@@ -300,27 +173,20 @@ radioBR(lst[5],5),
                     ),
                      
             
-             Row(
-            children: [SizedBox(
-  width:16
-),
-radioK(lst[0],0),SizedBox(
-  width:12
-),
-radioK(lst[1],1),SizedBox(
-  width:12
-),
-radioK(lst[2],2),SizedBox(
-  width:12
-),
-
-
-
-          ],), 
-                              /*    Padding(
+            
+                               Padding(
                 child: SpinBox(
+                    decoration: InputDecoration(enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:1, ),
+                                      
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:2, ),
+                                      
+                                    )),
                   min: 1,
-                  max: 15,
                   value: 1,
                  onChanged: (value) {
                         setState(() {
@@ -329,7 +195,7 @@ radioK(lst[2],2),SizedBox(
                         } 
                 ),
                 padding: const EdgeInsets.all(16),
-              ),*/
+              ),
 
 
 
@@ -340,32 +206,21 @@ radioK(lst[2],2),SizedBox(
                         child: Text("Number of Living rooms:",style:TextStyle(fontSize: 22))),
                     ),
                      
-             Row(
-            children: [SizedBox(
-  width:16
-),
-radioSR(lst[0],0),SizedBox(
-  width:12
-),
-radioSR(lst[1],1),SizedBox(
-  width:12
-),
-radioSR(lst[2],2),SizedBox(
-  width:12
-),
-radioSR(lst[3],3),SizedBox(
-  width:12
-),
-radioSR(lst[4],4),SizedBox(
-  width:12
-),
-
-
-          ],), 
-                        /*          Padding(
+           
+                               Padding(
                 child: SpinBox(
+                    decoration: InputDecoration(enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:1, ),
+                                      
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.brown,
+                                      width:2, ),
+                                      
+                                    )),
                   min: 1,
-                  max: 15,
+                
                   value: 1,
                  onChanged: (value) {
                         setState(() {
@@ -374,7 +229,7 @@ radioSR(lst[4],4),SizedBox(
                         } 
                 ),
                 padding: const EdgeInsets.all(16),
-              ),*/
+              ),
               Padding(
                       padding: const EdgeInsets.only(left:16.0,top: 16),
                       child: Align(
